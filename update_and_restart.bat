@@ -1,0 +1,6 @@
+@echo off
+echo Pulling changes from Git repository...
+git pull
+echo Restarting PM2 processes...
+pm2 restart all
+echo Done!
