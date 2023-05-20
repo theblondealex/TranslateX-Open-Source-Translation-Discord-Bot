@@ -15,12 +15,12 @@ const {
 const deploycommands = require("./deploy-commands.js");
 require("dotenv").config();
 
-// const webhook = process.env.BOTACTIVITY;
-// const info = webhook.split("/api/webhooks/");
-// const hookarr = info[1].split("/");
-// const webhookToken = hookarr[hookarr.length - 1];
-// const webhookId = hookarr[hookarr.length - 2];
-// const webhookClient = new WebhookClient({ id: webhookId, token: webhookToken });
+const webhook = process.env.BOTACTIVITY;
+const info = webhook.split("/api/webhooks/");
+const hookarr = info[1].split("/");
+const webhookToken = hookarr[hookarr.length - 1];
+const webhookId = hookarr[hookarr.length - 2];
+const webhookClient = new WebhookClient({ id: webhookId, token: webhookToken });
 
 const client = new Client({
   intents: [
@@ -97,18 +97,6 @@ client.on("interactionCreate", async (interaction) => {
   } else return;
 });
 
-client.on(Events.InteractionCreate, async function (interaction) {
-  if (!interaction.isButton()) return;
-  console.log(interaction);
-  const id = interaction.customId;
-  const idarr = id.split("_");
-  const exists = fs.existsSync(`./Buttons/${idarr[0]}.js`);
-  if (exists == true) {
-    const execute = require(`./Buttons/${idarr[0]}`);
-    await execute(interaction);
-  } else return;
-});
-
 client.login(process.env.BOTTOKEN);
 client.once("ready", () => {
   console.log("Ready!");
@@ -172,6 +160,4 @@ client.on("guildDelete", async (guild) => {
     content: "<@632252672338165801>",
     embeds: [embedremoved],
   });
-  await TeamFollowDelete(guildid);
-  await PWPanelDelete(guildid);
 });

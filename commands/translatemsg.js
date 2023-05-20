@@ -41,7 +41,6 @@ module.exports = {
         .get(channelid)
         .messages.fetch(messageid);
       // console.log(interaction);
-      console.log(msgtotrans);
       const msgtext = msgtotrans.content;
       if (msgtext == "") {
         return interaction.editReply({
@@ -100,8 +99,9 @@ module.exports = {
             .setDescription(
               `\`${outputTxt}\`\n\n||*Reliability Score ${score}%*||`
             )
-            .setFooter("Thank you for using Translatex - Alexander.#0001");
-
+            .setFooter({
+              text: "Thank you for using Translatex - Alexander.#0001",
+            });
           const langbutton = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
               .setCustomId(`lang_${comguildid}_${intID}`)
@@ -285,9 +285,9 @@ module.exports = {
                   .setDescription(
                     `\`${outputTxt}\`\n\n||*Reliability Score ${score}%*||`
                   )
-                  .setFooter(
-                    "Thank you for using Translatex - Alexander.#0001"
-                  );
+                  .setFooter({
+                    text: "Thank you for using Translatex - Alexander.#0001",
+                  });
 
                 return interaction.editReply({
                   content: ``,
@@ -296,8 +296,8 @@ module.exports = {
                   components: [],
                 });
               } catch (error) {
-                // console.log(error);
-                // console.log("failed lmao");
+                console.log(error);
+                console.log("failed lmao");
                 return interaction.editReply({
                   content: `Failed to translate`,
                   ephemeral: true,
@@ -308,6 +308,7 @@ module.exports = {
             });
           });
         } catch (e) {
+          console.log(e);
           return interaction.editReply({
             content: `Failed to translate`,
             ephemeral: true,
@@ -475,7 +476,9 @@ module.exports = {
               .setDescription(
                 `\`${outputTxt}\`\n\n||*Reliability Score ${score}%*||`
               )
-              .setFooter("Thank you for using Translatex - Alexander.#0001");
+              .setFooter({
+                text: "Thank you for using Translatex - Alexander.#0001",
+              });
 
             return interaction.editReply({
               content: ``,
