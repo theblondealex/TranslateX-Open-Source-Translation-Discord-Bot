@@ -103,7 +103,9 @@ module.exports = {
                 .setDescription(
                   `\`${outputTxt}\`\n\n||*Reliability Score ${score}%*||`
                 )
-                .setFooter("Thank you for using Translatex - Alexander.#0001");
+                .setFooter({
+                  text: "Thank you for using Translatex - Alexander.#0001",
+                });
 
               const langbutton = new ActionRowBuilder().addComponents(
                 new ButtonBuilder()
@@ -288,9 +290,9 @@ module.exports = {
                       .setDescription(
                         `\`${outputTxt}\`\n\n||*Reliability Score ${score}%*||`
                       )
-                      .setFooter(
-                        "Thank you for using Translatex - Alexander.#0001"
-                      );
+                      .setFooter({
+                        text: "Thank you for using Translatex - Alexander.#0001",
+                      });
 
                     return interaction.editReply({
                       content: ``,
@@ -476,9 +478,9 @@ module.exports = {
                   .setDescription(
                     `\`${outputTxt}\`\n\n||*Reliability Score ${score}%*||`
                   )
-                  .setFooter(
-                    "Thank you for using Translatex - Alexander.#0001"
-                  );
+                  .setFooter({
+                    text: "Thank you for using Translatex - Alexander.#0001",
+                  });
                 return interaction.editReply({
                   content: ``,
                   ephemeral: true,
