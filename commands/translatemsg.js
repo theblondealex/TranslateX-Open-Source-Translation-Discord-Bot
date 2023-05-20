@@ -99,7 +99,9 @@ module.exports = {
             .setColor(3407791)
             .setDescription(
               `\`${outputTxt}\`\n\n||*Reliability Score ${score}%*||`
-            );
+            )
+            .setFooter("Thank you for using Translatex - Alexander.#0001");
+
           const langbutton = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
               .setCustomId(`lang_${comguildid}_${intID}`)
@@ -282,7 +284,11 @@ module.exports = {
                   .setColor(3407791)
                   .setDescription(
                     `\`${outputTxt}\`\n\n||*Reliability Score ${score}%*||`
+                  )
+                  .setFooter(
+                    "Thank you for using Translatex - Alexander.#0001"
                   );
+
                 return interaction.editReply({
                   content: ``,
                   ephemeral: true,
@@ -290,13 +296,24 @@ module.exports = {
                   components: [],
                 });
               } catch (error) {
-                console.log(error);
-                console.log("failed lmao");
+                // console.log(error);
+                // console.log("failed lmao");
+                return interaction.editReply({
+                  content: `Failed to translate`,
+                  ephemeral: true,
+                  embeds: [],
+                  components: [],
+                });
               }
             });
           });
         } catch (e) {
-          console.log(e);
+          return interaction.editReply({
+            content: `Failed to translate`,
+            ephemeral: true,
+            embeds: [],
+            components: [],
+          });
         }
       } else {
         //if no localization ask which language
@@ -457,7 +474,9 @@ module.exports = {
               .setColor(3407791)
               .setDescription(
                 `\`${outputTxt}\`\n\n||*Reliability Score ${score}%*||`
-              );
+              )
+              .setFooter("Thank you for using Translatex - Alexander.#0001");
+
             return interaction.editReply({
               content: ``,
               ephemeral: true,
