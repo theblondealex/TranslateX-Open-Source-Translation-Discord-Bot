@@ -14,12 +14,12 @@ const {
 
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
-// const webhook = process.env.REACTIONHOOK;
-// const info = webhook.split("/api/webhooks/");
-// const hookarr = info[1].split("/");
-// const webhookToken = hookarr[hookarr.length - 1];
-// const webhookId = hookarr[hookarr.length - 2];
-// const webhookClient = new WebhookClient({ id: webhookId, token: webhookToken });
+const webhook = process.env.TRANSLATEHOOK;
+const info = webhook.split("/api/webhooks/");
+const hookarr = info[1].split("/");
+const webhookToken = hookarr[hookarr.length - 1];
+const webhookId = hookarr[hookarr.length - 2];
+const webhookClient = new WebhookClient({ id: webhookId, token: webhookToken });
 
 module.exports = {
   data: new ContextMenuCommandBuilder()
@@ -114,6 +114,20 @@ module.exports = {
             embeds: [translatedembed],
             components: [langbutton],
           });
+          try {
+            const embed = new EmbedBuilder()
+              .setTitle("Msg Translated!")
+              .setColor("#FFFFFF")
+              .setDescription(
+                `${comusername} [${comuserid} ] in ${comguild} [${comguildid}] Lang - ${userscode} \n\n*${msgtext}*`
+              );
+            webhookClient.send({
+              content: "",
+              embeds: [embed],
+            });
+          } catch (error) {
+            console.log("couldn't send embed");
+          }
           const confirmfilter = (i) =>
             i.customId === `lang_${comguildid}_${intID}`;
 
@@ -268,7 +282,7 @@ module.exports = {
                   body: JSON.stringify({
                     q: `${msgtext}`,
                     source: "auto",
-                    target: `ar`,
+                    target: `${rawinfo}`,
                     format: "text",
                     api_key: "",
                   }),
@@ -289,6 +303,20 @@ module.exports = {
                     text: "Thank you for using Translatex - Alexander.#0001",
                   });
 
+                try {
+                  const embed = new EmbedBuilder()
+                    .setTitle("Msg Translated!")
+                    .setColor("#FFFFFF")
+                    .setDescription(
+                      `${comusername} [${comuserid} ] in ${comguild} [${comguildid}] Lang - ${rawinfo} \n\n*${msgtext}*`
+                    );
+                  webhookClient.send({
+                    content: "",
+                    embeds: [embed],
+                  });
+                } catch (error) {
+                  console.log("couldn't send embed");
+                }
                 return interaction.editReply({
                   content: ``,
                   ephemeral: true,
@@ -459,7 +487,7 @@ module.exports = {
               body: JSON.stringify({
                 q: `${msgtext}`,
                 source: "auto",
-                target: `ar`,
+                target: `${rawinfo}`,
                 format: "text",
                 api_key: "",
               }),
@@ -479,7 +507,20 @@ module.exports = {
               .setFooter({
                 text: "Thank you for using Translatex - Alexander.#0001",
               });
-
+            try {
+              const embed = new EmbedBuilder()
+                .setTitle("Msg Translated!")
+                .setColor("#FFFFFF")
+                .setDescription(
+                  `${comusername} [${comuserid} ] in ${comguild} [${comguildid}] Lang - ${rawinfo} \n\n*${msgtext}*`
+                );
+              webhookClient.send({
+                content: "",
+                embeds: [embed],
+              });
+            } catch (error) {
+              console.log("couldn't send embed");
+            }
             return interaction.editReply({
               content: ``,
               ephemeral: true,
