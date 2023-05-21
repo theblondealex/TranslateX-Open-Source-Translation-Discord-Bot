@@ -45,27 +45,6 @@ for (const file of commandFiles) {
   client.commands.set(command.data.name, command);
 }
 
-// const testcommandsPath = path.join(__dirname, "commands/testcommands");
-// const testcommandFiles = fs
-//   .readdirSync(testcommandsPath)
-//   .filter((file) => file.endsWith(".js"));
-
-// for (const file of testcommandFiles) {
-//   const testfilePath = path.join(testcommandsPath, file);
-//   const testcommand = require(testfilePath);
-//   client.commands.set(testcommand.data.name, testcommand);
-// }
-
-// const buttonspath = path.join(__dirname, "Buttons");
-// const buttonFiles = fs
-//   .readdirSync(buttonspath)
-//   .filter((file) => file.endsWith(".js"));
-
-// for (const file of buttonFiles) {
-//   const buttPath = path.join(buttonspath, file);
-//   const button = require(buttPath);
-// }
-
 deploycommands();
 
 client.on("interactionCreate", async (interaction) => {
