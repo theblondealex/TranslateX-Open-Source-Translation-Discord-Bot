@@ -50,7 +50,6 @@ module.exports = {
     .setDescription("gives all translatex commands and info"),
   async execute(interaction) {
     await interaction.deferReply({ ephemeral: true });
-
     const comuserid = interaction.user.id;
     const comguild =
       interaction?.member?.guild.name != null
