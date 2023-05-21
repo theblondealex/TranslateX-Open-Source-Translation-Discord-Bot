@@ -35,6 +35,7 @@ const helpembed = {
     },
     {
       name: "click the title for the support server",
+      value: "",
     },
   ],
   footer: {
