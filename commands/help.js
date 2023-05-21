@@ -70,6 +70,7 @@ module.exports = {
       embeds: [embed],
     });
     return interaction.reply({
+      ephemeral: true,
       content: '',
       embeds: [helpembed],
       files: [],
