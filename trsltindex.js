@@ -107,13 +107,18 @@ client.on("guildCreate", async (guild) => {
   const serverowner = guild.ownerId;
   const ownerobj = await client.users.fetch(serverowner);
   const ownerusername = `${ownerobj.username}#${ownerobj.discriminator}`;
-
+  let membercount = 0;
+  const serverscache = client.guilds.cache;
+  serverscache.forEach((element) => {
+    const memberamount = element.memberCount;
+    membercount = membercount + memberamount;
+  });
   const embedadded = new EmbedBuilder()
     .setTitle("Added to a Server")
     .setColor("#33FFAF")
     .setImage(guildicon)
     .setDescription(
-      `I was added to a server!!\n\nServer - \`${guildname}\` [\`${guildid}\`]\nOwner - <@${serverowner}> [\`${ownerusername} - ${serverowner}\`]`
+      `I was added to a server!!\n\nServer - \`${guildname}\` [\`${guildid}\`]\nOwner - <@${serverowner}> [\`${ownerusername} - ${serverowner}\`]\n\nNew Total - Membercount - ${membercount}`
     );
   webhookClient.send({
     content: "<@632252672338165801>",
@@ -128,12 +133,18 @@ client.on("guildDelete", async (guild) => {
   const serverowner = guild.ownerId;
   const ownerobj = await client.users.fetch(serverowner);
   const ownerusername = `${ownerobj.username}#${ownerobj.discriminator}`;
+  let membercount = 0;
+  const serverscache = client.guilds.cache;
+  serverscache.forEach((element) => {
+    const memberamount = element.memberCount;
+    membercount = membercount + memberamount;
+  });
   const embedremoved = new EmbedBuilder()
     .setTitle("Removed from Server")
     .setColor("ff0000")
     .setImage(guildicon)
     .setDescription(
-      `I left a server!!\n\nServer - \`${guildname}\` [\`${guildid}\`]\nOwner - <@${serverowner}> [\`${ownerusername} - ${serverowner}\`]`
+      `I left a server!!\n\nServer - \`${guildname}\` [\`${guildid}\`]\nOwner - <@${serverowner}> [\`${ownerusername} - ${serverowner}\`]\n\nNew Total - Membercount - ${membercount}`
     );
   webhookClient.send({
     content: "<@632252672338165801>",
