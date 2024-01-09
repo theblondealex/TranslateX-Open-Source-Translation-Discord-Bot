@@ -15,7 +15,7 @@ const {
 const deploycommands = require("./deploy-commands.js");
 require("dotenv").config();
 
-const webhook = process.env.BOTACTIVITY;
+const webhook = process.env.TRANSLATEHOOK;
 const info = webhook.split("/api/webhooks/");
 const hookarr = info[1].split("/");
 const webhookToken = hookarr[hookarr.length - 1];
@@ -23,14 +23,7 @@ const webhookId = hookarr[hookarr.length - 2];
 const webhookClient = new WebhookClient({ id: webhookId, token: webhookToken });
 
 const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMembers,
-    // GatewayIntentBits.GuildMessages,
-    // GatewayIntentBits.GuildMessageReactions,
-    // GatewayIntentBits.GuildMessages,
-    // GatewayIntentBits.MessageContent,
-  ],
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
 });
 
 client.commands = new Collection();
@@ -50,7 +43,6 @@ deploycommands();
 client.on("interactionCreate", async (interaction) => {
   if (interaction.isChatInputCommand()) {
     const command = client.commands.get(interaction.commandName);
-    // statcord.postCommand(command.data.name, interaction.user.id);
 
     try {
       await command.execute(interaction);
@@ -79,6 +71,7 @@ client.on("interactionCreate", async (interaction) => {
 client.login(process.env.BOTTOKEN);
 client.once("ready", () => {
   console.log("Ready!");
+  client.user.setAvatar("./imgs/avatar.png");
   setInterval(function () {
     let servercount = client.guilds.cache.size;
     client.user.setActivity(`${servercount} Servers`, {
@@ -86,19 +79,6 @@ client.once("ready", () => {
     });
   }, 20000);
 });
-
-function decimalToHex(decimal) {
-  // Convert the decimal number to a string
-  let hex = decimal.toString();
-
-  // Add leading zeros if necessary
-  hex = hex.padStart(8, "0");
-
-  // Parse the string as an integer and convert it to a hexadecimal string
-  hex = parseInt(hex).toString(16);
-
-  return hex;
-}
 
 client.on("guildCreate", async (guild) => {
   const guildid = guild.id;

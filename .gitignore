@@ -1,7 +1,6 @@
 node_modules/
 .env
 .env.test
-writekey
-writekey.pub
 git-pull-and-pm2-restart.bat
 Libretranslate
+db

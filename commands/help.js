@@ -7,7 +7,7 @@ const {
 } = require("discord.js");
 const path = require("path");
 require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
-const webhook = process.env.HELPHOOK;
+const webhook = process.env.TRANSLATEHOOK;
 const info = webhook.split("/api/webhooks/");
 const hookarr = info[1].split("/");
 const webhookToken = hookarr[hookarr.length - 1];
@@ -39,7 +39,7 @@ const helpembed = {
     },
   ],
   footer: {
-    text: "Developed by @TheBlondeAlex - Alexander.#0001",
+    text: "Developed by theblondealex [Discord]",
     icon_url:
       "https://cdn.discordapp.com/attachments/714981224275509258/1109872792431759450/dsadsa.png",
   },
@@ -71,7 +71,7 @@ module.exports = {
     });
     return interaction.reply({
       ephemeral: true,
-      content: '',
+      content: "",
       embeds: [helpembed],
       files: [],
     });

@@ -104,7 +104,9 @@ module.exports = {
                   `\`${outputTxt}\`\n\n||*Reliability Score ${score}%*||`
                 )
                 .setFooter({
-                  text: "Thank you for using Translatex - Alexander.#0001",
+                  text: "Developed by theblondealex [Discord]",
+                  iconURL:
+                    "https://cdn.discordapp.com/attachments/714981224275509258/1109872792431759450/dsadsa.png",
                 });
 
               const langbutton = new ActionRowBuilder().addComponents(
@@ -305,7 +307,9 @@ module.exports = {
                         `\`${outputTxt}\`\n\n||*Reliability Score ${score}%*||`
                       )
                       .setFooter({
-                        text: "Thank you for using Translatex - Alexander.#0001",
+                        text: "Developed by theblondealex [Discord]",
+                        iconURL:
+                          "https://cdn.discordapp.com/attachments/714981224275509258/1109872792431759450/dsadsa.png",
                       });
                     try {
                       const embed = new EmbedBuilder()
@@ -506,7 +510,9 @@ module.exports = {
                     `\`${outputTxt}\`\n\n||*Reliability Score ${score}%*||`
                   )
                   .setFooter({
-                    text: "Thank you for using Translatex - Alexander.#0001",
+                    text: "Developed by theblondealex [Discord]",
+                    iconURL:
+                      "https://cdn.discordapp.com/attachments/714981224275509258/1109872792431759450/dsadsa.png",
                   });
                 try {
                   const embed = new EmbedBuilder()
